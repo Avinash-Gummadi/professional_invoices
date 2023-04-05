@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Local Bills Report</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.png">
+</head>
+<body>
+  <header>
+    <a href="/">
+      <img src="images/logo.png" class="logo-image" alt="Logo">
+    </a>
+    <h1>Local Bills Report</h1>
+  </header>
+  <main>
+    <div class="container">
+      <div class="download-container">
+        <div class="download">
+          <a href="#" id="downloadCSV" download>Download as CSV</a>
+        </div>
+        <div class="download">
+          <a href="#" id="downloadPDF">Download as PDF</a>
+        </div>
+      </div>
+      <h2>Employee Information</h2>
+      <p>Employee Name: <span id="employeeName"></span></p>
+      <h2>Reason</h2>
+      <p>Reason: <span id="reason"></span></p>
+      <h2>Stamp and Signature (optional)</h2>
+      <div id="stampSignature">
+        <p>Stamp:</p>
+        <img id="stampImage">
+        <p>Signature:</p>
+        <img id="signatureImage">
+      </div>
+      <h2>Amount</h2>
+      <p>Amount: ₹<span id="amount"></span></p>
+    </div>
+  </main>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+  <script defer type="text/javascript" src="js/localbills.js"></script>
+</body>
+</html>

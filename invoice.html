@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Invoice Generator | WebLaunch</title>
+  <meta name="description" content="Generate professional invoices for your business with WebLaunch's invoice generator.">
+  <meta name="keywords" content="Invoice Generator, WebLaunch, Invoicing">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.png">
+</head>
+
+<body>
+  <header>
+    <a href="/">
+      <img src="images/logo.png" class="logo-image" alt="WebLaunch logo">
+    </a>
+    <h1>Invoice Generator</h1>
+  </header>
+  <main>
+    <form id="invoice-form" class="container" method="GET">
+      <fieldset>
+        <legend>Customer Information</legend>
+        <label for="customer-name">Customer Name</label>
+        <input type="text" id="customer-name" name="customer-name" required>
+        <label for="customer-address">Customer Address</label>
+        <textarea id="customer-address" name="customer-address" required></textarea>
+      </fieldset>
+      <fieldset>
+        <legend>Invoice Information</legend>
+        <div class="date-picker">
+          <div class="input-container">
+            <label for="invoice-date">Invoice Date (DD-MM-YYYY)</label>
+            <input type="date" id="invoice-date" name="invoice-date" required>
+          </div>
+          <div class="input-container">
+            <label for="due-date">Due Date (DD-MM-YYYY)</label>
+            <input type="date" id="due-date" name="due-date" required>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Items</legend>
+        <table id="itemsTable">
+          <thead>
+            <tr>
+              <th>Delete</th>
+              <th>Item Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Sub Total</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4" style="text-align:right">Total:</td>
+              <td><input type="number" id="total" name="total" step="0.01" readonly></td>
+            </tr>
+          </tfoot>
+        </table>
+        <button class="add-item-btn" type="button" onclick="addItem()">Add Item</button>
+      </fieldset>
+      <button type="submit">Generate Invoice</button>
+    </form>
+  </main>
+  <script src="js/script.js"></script>
+</body>
+
+</html>

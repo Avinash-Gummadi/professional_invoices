@@ -106,6 +106,6 @@ document.getElementById('invoice-form').addEventListener('submit', function(even
     urlParams.append(key, value);
   });
   
-  // Redirect to report.html with URL parameters
-  window.location.href = `report.html?${urlParams.toString()}`;
+  // Redirect to invoicereport.html with URL parameters
+  window.location.href = `invoicereport.html?${urlParams.toString()}`;
 });

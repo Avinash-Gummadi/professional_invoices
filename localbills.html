@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Local Bills</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.png">
+</head>
+
+<body>
+  <header>
+    <a href="/">
+      <img src="images/logo.png" class="logo-image" alt="Logo">
+    </a>
+    <h1>Local Bills</h1>
+  </header>
+  <main>
+    <form id="bill-form" class="container">
+      <fieldset>
+        <legend>Employee Information</legend>
+        <label for="employee-name">Employee Name</label>
+        <select id="employee-name" name="employee-name" required>
+          <option value="">Select Employee</option>
+          <option value="John Doe">John Doe</option>
+          <option value="Jane Smith">Jane Smith</option>
+          <option value="Mike Johnson">Mike Johnson</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <legend>Amount</legend>
+        <label for="amount">Amount in INR</label>
+        <input type="number" id="amount" name="amount" required>
+      </fieldset>
+      <fieldset>
+        <legend>Reason</legend>
+        <label for="reason">Reason</label>
+        <textarea id="reason" name="reason" required></textarea>
+      </fieldset>
+      <fieldset>
+        <legend>Stamp and Signature (optional)</legend>
+        <label for="stamp">Stamp</label>
+        <input type="file" id="stamp" name="stamp">
+        <label for="signature">Signature</label>
+        <input type="file" id="signature" name="signature">
+      </fieldset>
+      <button type="submit">Submit</button>
+    </form>
+  </main>
+  <script src="js/localbills.js"></script>
+</body>
+
+</html>

@@ -123,7 +123,7 @@ downloadButton.setAttribute("download", "invoice_report.csv");
 
 // PDF Download
 document.addEventListener("DOMContentLoaded", function () {
-    // Select the main container element in report.html
+    // Select the main container element in invoicereport.html
     const element = document.querySelector('.container');
 
     // Options for html2pdf

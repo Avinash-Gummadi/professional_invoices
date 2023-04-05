@@ -156,7 +156,7 @@ button[type="submit"]:hover {
     max-height: 70px;
     border-radius: 50%;
 }
-  
+
 .download-container {
     display: flex;
     justify-content: flex-end;
