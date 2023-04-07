@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const timestamp = new Date().getTime(); // gets current timestamp
         const file_name = `invoice_report_${timestamp}.pdf`; // dynamic file name with timestamp
         const options = {
-            margin: [10, 10, 17.2, 10],
+            margin: [10, 10, 18, 10],
             filename: file_name,
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: { dpi: 192, letterRendering: true },
