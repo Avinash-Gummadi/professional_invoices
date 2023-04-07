@@ -38,7 +38,7 @@ const items = [];
 urlParams.forEach((value, key) => {
     if (key.startsWith('item-')) {
         // Extract the item number from the parameter key
-        const itemNumber = key.slice(0, 6);
+        const itemNumber = `item-${key.split('-')[1]}`;
         // If the current item number is not in the items array yet, add it
         if (!items[itemNumber]) {
             items[itemNumber] = { name: '', quantity: 0, price: 0, total: 0 };
@@ -80,6 +80,7 @@ const itemsTableBody = document.getElementById('itemsTableBody');
 // Loop through the items array and add a table row for each item
 Object.values(items).forEach((item) => {
     const itemRow = document.createElement('tr');
+    itemRow.classList.add('tr-break-point');
     const itemName = document.createElement('td');
     itemName.textContent = item.name;
     itemRow.appendChild(itemName);
@@ -124,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const timestamp = new Date().getTime(); // gets current timestamp
         const file_name = `invoice_report_${timestamp}.pdf`; // dynamic file name with timestamp
         const options = {
-            margin: [10, 10, 10, 10],
+            margin: [10, 10, 17.2, 10],
             filename: file_name,
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: { dpi: 192, letterRendering: true },

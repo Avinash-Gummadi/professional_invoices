@@ -54,7 +54,6 @@ h2 {
 }
 
 table {
-    border-collapse: collapse;
     margin-bottom: 1rem;
     width: 100%;
 }
@@ -99,7 +98,6 @@ textarea {
 }
 
 table {
-    border-collapse: collapse;
     margin-bottom: 20px;
     width: 100%;
 }
@@ -283,4 +281,8 @@ button[type="submit"]:hover {
 #signatureImage {
     width: 150px;
     height: 50px;
+}
+
+.terms-and-conditions, .tr-break-point {
+    page-break-inside: avoid;
 }
