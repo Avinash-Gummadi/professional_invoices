@@ -1,0 +1,27 @@
+.alert {
+	background-color: black;
+	color: red;
+	font-weight: bold;
+	padding: 20px;
+	text-align: center;
+}
+.warning-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FF0000;
+    color: #FFFFFF;
+    text-align: center;
+  }
+  
+  .warning-header {
+    font-size: 36px;
+    margin-top: 0;
+  }
+  
+  .warning-message {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: justify;
+  }
+  

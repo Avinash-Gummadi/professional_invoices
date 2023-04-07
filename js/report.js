@@ -4,27 +4,30 @@ const urlParams = new URLSearchParams(window.location.search);
 // Get customer information
 const customerName = urlParams.get('customer-name');
 const customerAddress = urlParams.get('customer-address');
+const customerEmail = urlParams.get('customer-email');
+const customerMobile = urlParams.get('customer-mobile');
+const termsAndConditions = urlParams.get('terms-and-conditions').split('\n');
 
 // Get invoice information
 const rawInvoiceDate = urlParams.get('invoice-date');
 const rawDueDate = urlParams.get('due-date');
 
 const options = { day: '2-digit', month: 'short', year: 'numeric' };
-const formattedInvoiceDate= new Date(rawInvoiceDate).toLocaleDateString('en-GB', options);
+const formattedInvoiceDate = new Date(rawInvoiceDate).toLocaleDateString('en-GB', options);
 const formattedDueDate = new Date(rawDueDate).toLocaleDateString('en-GB', options);
 
 // Format invoice date as DD-MMM-YYYY (e.g. 02-Apr-2023)
 const invoiceDate = formattedInvoiceDate.split(' ').map((item, index) => {
-  if (index === 0) return item.padStart(2, '0');
-  if (index === 1) return item.substr(0, 3);
-  return item;
+    if (index === 0) return item.padStart(2, '0');
+    if (index === 1) return item.substr(0, 3);
+    return item;
 }).join('-');
 
 // Format due date as DD-MMM-YYYY (e.g. 02-Apr-2023)
 const dueDate = formattedDueDate.split(' ').map((item, index) => {
-  if (index === 0) return item.padStart(2, '0');
-  if (index === 1) return item.substr(0, 3);
-  return item;
+    if (index === 0) return item.padStart(2, '0');
+    if (index === 1) return item.substr(0, 3);
+    return item;
 }).join('-');
 
 
@@ -56,6 +59,12 @@ urlParams.forEach((value, key) => {
 // Update HTML with extracted information
 const customerNameElement = document.getElementById('customerName');
 customerNameElement.textContent = customerName;
+
+const customerMobileElement = document.getElementById('customerMobile');
+customerMobileElement.textContent = customerMobile;
+
+const customerEmailElement = document.getElementById('customerEmail');
+customerEmailElement.textContent = customerEmail;
 
 const customerAddressElement = document.getElementById('customerAddress');
 customerAddressElement.textContent = customerAddress;
@@ -95,48 +104,32 @@ const total = Object.values(items).reduce((acc, item) => acc + item.total, 0);
 const totalElement = document.getElementById('total');
 totalElement.textContent = `${total.toFixed(2)}`;
 
-// CSV Download
-const downloadButton = document.getElementById("downloadCSV");
-// Get the table body and total amount elements
-const tableBody = document.getElementById("itemsTableBody");
-const totalAmount = document.getElementById("total");
-// Get the customer information
-const customerNameCsv = document.getElementById("customerName").textContent;
-const customerAddressCsv = document.getElementById("customerAddress").textContent;
-const invoiceDateCsv = document.getElementById("invoiceDate").textContent;
-const dueDateCsv = document.getElementById("dueDate").textContent;
-
-// Generate the CSV content
-let csvContent = `Customer Name,${customerNameCsv}\nCustomer Address,${customerAddressCsv}\nInvoice Date,${invoiceDateCsv}\nDue Date,${dueDateCsv}\n\nItem Name,Quantity,Price,Total\n`;
-tableBody.querySelectorAll("tr").forEach(row => {
-    const itemName = row.querySelector("td:nth-child(1)").textContent;
-    const quantity = row.querySelector("td:nth-child(2)").textContent;
-    const price = row.querySelector("td:nth-child(3)").textContent;
-    const total = row.querySelector("td:nth-child(4)").textContent;
-    csvContent += `${itemName},${quantity},${price},${total}\n`;
-});
-csvContent += `\nTotal Amount,,,Rs.${totalAmount.textContent}\n`;
-
-// Set the CSV data as a download link
-downloadButton.setAttribute("href", "data:text/csv;charset=utf-8," + encodeURIComponent(csvContent));
-downloadButton.setAttribute("download", "invoice_report.csv");
+//termsAndConditions
+const termsAndConditionsElement = document.getElementById('termsAndConditions');
+// Display the terms-and-conditions as a list
+for (const term of termsAndConditions) {
+    const listTermsItem = document.createElement('li');
+    listTermsItem.textContent = term;
+    termsAndConditionsElement.appendChild(listTermsItem);
+}
 
 // PDF Download
 document.addEventListener("DOMContentLoaded", function () {
     // Select the main container element in invoicereport.html
     const element = document.querySelector('.container');
 
-    // Options for html2pdf
-    const options = {
-        margin: [10, 10, 10, 10],
-        filename: 'invoice_report.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { dpi: 192, letterRendering: true },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-    };
-
     // When the "Download as PDF" button is clicked, create the PDF
     document.getElementById('downloadPDF').addEventListener('click', () => {
+        // Options for html2pdf
+        const timestamp = new Date().getTime(); // gets current timestamp
+        const file_name = `invoice_report_${timestamp}.pdf`; // dynamic file name with timestamp
+        const options = {
+            margin: [10, 10, 10, 10],
+            filename: file_name,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { dpi: 192, letterRendering: true },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        };
         // Hide the download buttons
         const downloadButtons = document.querySelectorAll('.download');
         downloadButtons.forEach(button => button.style.display = 'none');
@@ -152,4 +145,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+const stampImage = document.getElementById('stampImage');
+const signatureImage = document.getElementById('signatureImage');
+if (stampImage) {
+    stampImage.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+        alert('Tampering on stamp is Illegal.');
+        window.location.href = 'illegal.html';
+    });
+}
 
+if (signatureImage) {
+    signatureImage.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+        alert('Tampering on signature is Illegal.');
+        window.location.href = 'illegal.html';
+    });
+}

@@ -6,10 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Invoice Generator | WebLaunch</title>
-  <meta name="description" content="Generate professional invoices for your business with WebLaunch's invoice generator.">
+  <meta name="description"
+    content="Generate professional invoices for your business with WebLaunch's invoice generator.">
   <meta name="keywords" content="Invoice Generator, WebLaunch, Invoicing">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="images/logo.png">
+  <script src="js/auth.js"></script>
 </head>
 
 <body>
@@ -17,6 +19,17 @@
     <a href="/">
       <img src="images/logo.png" class="logo-image" alt="WebLaunch logo">
     </a>
+    <nav>
+      <ul class="options-list">
+        <li class="option"><a href="invoice.html">Invoice Generator</a></li>
+        <li class="option"><a href="localbills.html">Local Bills</a></li>
+        <li class="option"><a href="#">Other1</a></li>
+        <li class="option"><a href="#">Other2</a></li>
+        <li class="option"><a href="#">Other3</a></li>
+        <li class="option"><a href="#">Other4</a></li>
+        <li class="option"><a href="#">Other5</a></li>
+      </ul>
+    </nav>
     <h1>Invoice Generator</h1>
   </header>
   <main>
@@ -27,6 +40,16 @@
         <input type="text" id="customer-name" name="customer-name" required>
         <label for="customer-address">Customer Address</label>
         <textarea id="customer-address" name="customer-address" required></textarea>
+        <div class="date-picker">
+          <div class="input-container">
+            <label for="customer-email">Customer Email</label>
+            <input type="email" id="customer-email" name="customer-email" required>
+          </div>
+          <div class="input-container">
+            <label for="customer-mobile">Customer Mobile Number</label>
+            <input type="tel" id="customer-mobile" name="customer-mobile" required>
+          </div>
+        </div>
       </fieldset>
       <fieldset>
         <legend>Invoice Information</legend>
@@ -63,6 +86,11 @@
           </tfoot>
         </table>
         <button class="add-item-btn" type="button" onclick="addItem()">Add Item</button>
+      </fieldset>
+      <fieldset>
+        <legend>Terms and Conditions</legend>
+        <label for="terms-and-conditions">Terms and Conditions</label>
+        <textarea id="terms-and-conditions" name="terms-and-conditions" required></textarea>
       </fieldset>
       <button type="submit">Generate Invoice</button>
     </form>

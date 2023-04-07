@@ -7,26 +7,43 @@
   <title>WebLaunch | Invoice Report</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="images/logo.png">
+  <script src="js/auth.js"></script>
 </head>
 <body>
   <header>
     <a href="/">
       <img src="images/logo.png" class="logo-image" alt="WebLaunch logo">
     </a>
+    <nav>
+      <ul class="options-list">
+        <li class="option"><a href="invoice.html">Invoice Generator</a></li>
+        <li class="option"><a href="localbills.html">Local Bills</a></li>
+        <li class="option"><a href="#">Other1</a></li>
+        <li class="option"><a href="#">Other2</a></li>
+        <li class="option"><a href="#">Other3</a></li>
+        <li class="option"><a href="#">Other4</a></li>
+        <li class="option"><a href="#">Other5</a></li>
+      </ul>
+    </nav>
     <h1>Invoice Report</h1>
   </header>
   <main>
     <div class="container">
       <div class="download-container">
         <div class="download">
-          <a href="#" id="downloadCSV" download>Download as CSV</a>
-        </div>
-        <div class="download">
           <a href="#" id="downloadPDF">Download as PDF</a>
         </div>
       </div>
+      <div class="company-info">
+        <img src="images/logo.png" class="logo-image" alt="Logo">
+        <h2 class="company-name">WebLaunch</h2>
+      </div>
       <h2>Customer Information</h2>
       <p>Customer Name: <span id="customerName"></span></p>
+
+      <p>Customer Mobile: <span id="customerMobile"></span></p>
+      <p>Customer Email: <span id="customerEmail"></span></p>
+      
       <p>Customer Address: <span id="customerAddress"></span></p>
       <h2>Invoice Information</h2>
       <p>Invoice Date: <span id="invoiceDate"></span></p>
@@ -44,8 +61,16 @@
         <tbody id="itemsTableBody">
         </tbody>
       </table>
+      <div id="stampSignature">
+        <div class="stamp-container">
+          <img id="stampImage" src="images/weblaunch_stamp.png">
+          <img id="signatureImage" src="images/cfo_sign.png" class="signature">
+        </div>
+      </div>
       <h2>Total Amount</h2>
-      <p>Total: ₹<span id="total"></span></p>
+      <p>₹<span id="total"></span></p>
+      <h2>Terms and Conditions</h2>
+      <ul id="termsAndConditions" style="list-style: none;"></ul>
     </div>
   </main>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>

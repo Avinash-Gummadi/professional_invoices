@@ -83,6 +83,8 @@ label {
 input[type="text"],
 input[type="number"],
 input[type="date"],
+input[type="email"],
+input[type="tel"],
 textarea {
     padding: 10px;
     margin-bottom: 20px;
@@ -141,6 +143,7 @@ button[type="submit"]:hover {
 }
 
 .container {
+    position: relative;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     max-width: 1000px;
     margin: 0 auto;
@@ -217,6 +220,7 @@ button[type="submit"]:hover {
 .date-picker {
     display: flex;
     justify-content: space-between;
+    width: 95%;
 }
 
 .input-container {
@@ -225,4 +229,58 @@ button[type="submit"]:hover {
     align-items: center;
     margin: 0 10px;
     width: 100%;
+}
+
+.form-select {
+    display: block;
+    width: 92%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-select:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.stamp-container {
+    position: relative;
+    display: inline-block;
+}
+
+.signature {
+    position: absolute;
+    bottom: 35%;
+    left: 30%;
+    width: 60%;
+    transform: rotate(352deg);
+}
+
+#stampSignature {
+    position: absolute;
+    bottom: 0;
+    right: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#stampImage {
+    width: 200px;
+    height: 150px;
+    margin-bottom: 10px;
+}
+
+#signatureImage {
+    width: 150px;
+    height: 50px;
 }
