@@ -21,7 +21,9 @@ if (document.title === "WebLaunch | Local Bills") {
     const amount = document.getElementById("amount").value;
     const reason = document.getElementById("reason").value;
     const category = document.getElementById("category").value;
-    const date = new Date().toISOString().split('T')[0]; // capture current date in ISO format
+    const getDate = document.getElementById("date").value;
+    const dateArr = getDate.split('-'); // split date into an array
+    const date = `${dateArr[2]}-${dateArr[1]}-${dateArr[0]}`; // re-arrange into desired format  
     const tAndC = termsAndConditions.value;
     // Construct the query string with the form data and compressed file data
     const params = new URLSearchParams({
