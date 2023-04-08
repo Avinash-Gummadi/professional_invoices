@@ -2,7 +2,7 @@ if (document.title === "WebLaunch | Local Bills") {
   // Set default terms and conditions
   // Get the textarea element
   const termsAndConditions = document.getElementById('terms-and-conditions');
-  termsAndConditions.value = "1. The payment is for the specific purpose outlined in the bill and cannot be used for any other purpose.\n2. The payment is non-refundable once it has been disbursed.\n3. The employee is responsible for any taxes or other fees associated with the payment.\n4. Any disputes or discrepancies in the bill must be reported within 30 days of receipt.\n5. The employee agrees to provide any necessary documentation to support the payment, such as receipts or invoices.\n6. The employer reserves the right to withhold payment if the employee is found to be in violation of company policies or procedures.\n7. Payment will be made in the form specified in the bill, and any costs associated with processing the payment, such as wire transfer fees, will be borne by the employee.";
+  termsAndConditions.value = "1. The payment is for the specific purpose outlined in the bill and cannot be used for any other purpose.\n2. The employee is responsible for any taxes or other fees associated with the payment.\n3. Any disputes or discrepancies in the bill must be reported within 7 days of receipt.\n4. The employee agrees to provide any necessary documentation to support the payment if employer asks at any time, such as receipts or invoices.\n5. The employer reserves the right to withhold payment if the employee is found to be in violation of company policies or procedures.\n6. Payment will be made in the form specified in the bill, and any costs associated with processing the payment, such as wire transfer fees, will be borne by the employee.";
 
   // Set the minimum height of the textarea
   termsAndConditions.style.minHeight = '210px';
@@ -104,7 +104,7 @@ if (document.title === "WebLaunch | Local Bills Report") {
   if (downloadPDFElement) {
     // Options for html2pdf
     const timestamp = new Date().getTime(); // gets current timestamp
-    const file_name = `local_bills${timestamp}.pdf`; // dynamic file name with timestamp
+    const file_name = `payment_slip_${timestamp}.pdf`; // dynamic file name with timestamp
     const options = {
       margin: [10, 10, 10, 10],
       filename: file_name,
