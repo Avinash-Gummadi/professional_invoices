@@ -14,16 +14,26 @@ if (document.title === "WebLaunch | Local Bills") {
     termsAndConditions.style.height = `${termsAndConditions.scrollHeight}px`;
   });
   const billForm = document.getElementById("bill-form");
-
+  const employeeNameField = document.getElementById("employee-name");
+  let employeeName = '';
+  employeeNameField.addEventListener('change', function (){
+    if (employeeNameField.value == 'Other') {
+      otherEmp = document.getElementById('otherEmp');
+      otherEmp.style.display = 'block';
+      document.getElementById('otherEmpField').addEventListener('change', function(){
+        employeeName = document.getElementById('otherEmpField').value;
+      })
+    } else {
+      document.getElementById('otherEmp').style.display = 'none';
+      employeeName = employeeNameField.value;
+    }
+    
+  })
   billForm.addEventListener("submit", async function (event) {
     event.preventDefault();
-    const employeeName = document.getElementById("employee-name").value;
     const amount = document.getElementById("amount").value;
     const reason = document.getElementById("reason").value;
     const category = document.getElementById("category").value;
-    // const getDate = document.getElementById("date").value;
-    // const dateArr = getDate.split('-'); // split date into an array
-    // const date = `${dateArr[2]}-${dateArr[1]}-${dateArr[0]}`; // re-arrange into desired format
     const date = document.getElementById("date").value;
     const tAndC = termsAndConditions.value;
     // Construct the query string with the form data and compressed file data
