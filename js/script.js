@@ -1,7 +1,7 @@
 // Set default terms and conditions
 // Get the textarea element
 const termsAndConditions = document.getElementById('terms-and-conditions');
-termsAndConditions.value = "1. 30% Advance on confirmation\n2. Advance is not refundable after 7 days.\n3. Price negotiation after the project completion is not allowed.\n4. Hosting will be done after full payment only.\n5. Changes can be made before hosting only\n6. If the client has extra requirements, it needs to be informed before or extra charges will be charged.\n7. The above price is exclusive of GST and its optional";
+termsAndConditions.value = "1. Advance is not refundable after 7 days.\n2. Price negotiation after the project completion is not allowed.\n3. Hosting will be done after full payment only.\n4. Changes can be made before hosting only\n5. If the client has extra requirements, it needs to be informed before or extra charges will be charged.\n6. The above price is exclusive of GST and its optional";
 
 // Set the minimum height of the textarea
 termsAndConditions.style.minHeight = '150px';
