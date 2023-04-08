@@ -105,12 +105,15 @@ if (document.title === "WebLaunch | Local Bills Report") {
     // Options for html2pdf
     const timestamp = new Date().getTime(); // gets current timestamp
     const file_name = `payment_slip_${timestamp}.pdf`; // dynamic file name with timestamp
+    const output_path = `/path/to/save/pdf/payment_slip.pdf` // specify the output path here
+    
     const options = {
       margin: [10, 10, 10, 10],
       filename: file_name,
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { dpi: 192, letterRendering: true },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      output: `D:/weblaunch_details/financial_reports/${file_name}` // specify the output path here
     };
 
     downloadPDFElement.addEventListener('click', function (event) {
