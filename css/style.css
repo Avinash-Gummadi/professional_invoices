@@ -160,24 +160,46 @@ button[type="submit"]:hover {
 
 .download-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     margin-bottom: 20px;
+    align-items: center;
 }
 
+.company-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align: right;
+    position: absolute;
+    right: 15px;
+}
+
+.company-info a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    font-style: italic;
+}
+.customer-details{
+    margin-top: 105px;
+}
 .download {
     text-align: center;
     margin-left: 10px;
 }
 
-.download a {
+.download a, .download label {
     background-color: var(--primary-color);
     color: #fff;
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
+    margin-bottom: 0;
+    font-weight: normal;
+    display: inline;
 }
 
-.download a:hover {
+.download a:hover, .download label:hover {
     background-color: #444;
 }
 
@@ -264,9 +286,6 @@ button[type="submit"]:hover {
 }
 
 #stampSignature {
-    position: absolute;
-    bottom: 0;
-    right: 50px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -283,6 +302,14 @@ button[type="submit"]:hover {
     height: 50px;
 }
 
-.terms-and-conditions, .tr-break-point {
+.terms-and-conditions, .tr-break-point, #stampSignature {
     page-break-inside: avoid;
+}
+
+#filePreview{
+    page-break-inside: avoid;
+}
+#filePreview img{
+    width: 300px;
+    height: 500px;
 }

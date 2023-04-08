@@ -31,31 +31,50 @@
   </header>
   <main>
     <div class="container">
+
       <div class="download-container">
         <div class="download">
           <a href="#" id="downloadPDF">Download as PDF</a>
         </div>
-      </div>
-      <div class="company-info">
-        <img src="images/logo.png" class="logo-image" alt="Logo">
-        <h2 class="company-name">WebLaunch</h2>
-      </div>
-      <h2>Employee Information</h2>
-      <p>Employee Name: <span id="employeeName"></span></p>
-      <p>Date: <span id="date"></span></p>
-      <p>Category: <span id="category"></span></p>
-      <h2>Reason</h2>
-      <p><span id="reason"></span></p>
-      <div id="stampSignature">
-        <div class="stamp-container">
-          <img id="stampImage" src="images/weblaunch_stamp.png" oncontextmenu="return false;">
-          <img id="signatureImage" src="images/cfo_sign.png" class="signature" oncontextmenu="return false;">
+        <div class="download">
+          <label for="uploadImage">Upload Proof</label>
+          <input type="file" id="uploadImage" style="display: none;">
         </div>
       </div>
-      <h2>Amount</h2>
-      <p>₹<span id="amount"></span></p>
-      <h2>Terms and Conditions</h2>
-      <ul id="termsAndConditions" style="list-style: none;"></ul>
+      <div class="company-info">
+        <div>
+          <img src="images/logo.png" class="logo-image" alt="Logo">
+          <h2 class="company-name">WebLaunch</h2>
+        </div>
+        <a href="tel:+91 7671876916">+91 7671876916</a>
+        <a href="mailto:avinashgummadi2020weblaunch@gmail.com" target="_blank">avinashgummadi2020weblaunch@gmail.com</a>
+        <a href="https://weblaunch.in" target="_blank">weblaunch.in</a>
+      </div>
+
+      <div class="customer-details">
+        <h2>Employee Information</h2>
+        <p>Employee Name: <span id="employeeName"></span></p>
+        <p>Date: <span id="date"></span></p>
+        <p>Category: <span id="category"></span></p>
+        <h2>Reason</h2>
+        <p><span id="reason"></span></p>
+        <h2>Amount</h2>
+        <p>₹<span id="amount"></span></p>
+
+        <section class="terms-and-conditions">
+          <h2>Terms and Conditions</h2>
+          <ul id="termsAndConditions" style="list-style: none;"></ul>
+        </section>
+
+        <div id="stampSignature">
+          <div class="stamp-container">
+            <img id="stampImage" src="images/weblaunch_stamp.png" oncontextmenu="return false;">
+            <img id="signatureImage" src="images/cfo_sign.png" class="signature" oncontextmenu="return false;">
+          </div>
+        </div>
+        <p id="invoiceGenDate"></p>
+        <div id="filePreview"></div>
+      </div>
     </div>
   </main>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>

@@ -103,9 +103,11 @@ if (document.title === "WebLaunch | Local Bills Report") {
   const downloadPDFElement = document.getElementById('downloadPDF');
   if (downloadPDFElement) {
     // Options for html2pdf
+    const timestamp = new Date().getTime(); // gets current timestamp
+    const file_name = `local_bills${timestamp}.pdf`; // dynamic file name with timestamp
     const options = {
       margin: [10, 10, 10, 10],
-      filename: 'local-bills.pdf',
+      filename: file_name,
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { dpi: 192, letterRendering: true },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
@@ -126,22 +128,50 @@ if (document.title === "WebLaunch | Local Bills Report") {
         });
     });
   }
-}
+  const stampImage = document.getElementById('stampImage');
+  const signatureImage = document.getElementById('signatureImage');
+  if (stampImage) {
+    stampImage.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+      alert('Tampering on stamp is Illegal.');
+      window.location.href = 'illegal.html';
+    });
+  }
 
-const stampImage = document.getElementById('stampImage');
-const signatureImage = document.getElementById('signatureImage');
-if (stampImage) {
-  stampImage.addEventListener('contextmenu', (event) => {
-    event.preventDefault();
-    alert('Tampering on stamp is Illegal.');
-    window.location.href = 'illegal.html';
-  });
-}
+  if (signatureImage) {
+    signatureImage.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+      alert('Tampering on signature is Illegal.');
+      window.location.href = 'illegal.html';
+    });
+  }
 
-if (signatureImage) {
-  signatureImage.addEventListener('contextmenu', (event) => {
-    event.preventDefault();
-    alert('Tampering on signature is Illegal.');
-    window.location.href = 'illegal.html';
+  // Create a new paragraph element with the text "Invoice generated on [current date]"
+  const invoiceGenDate = document.getElementById('invoiceGenDate');
+  if (invoiceGenDate) {
+    // Get the current date
+    const currentDate = new Date().toLocaleDateString();
+    invoiceGenDate.textContent = `Invoice generated on ${currentDate}`;
+  }
+
+  // 
+  const fileInput = document.getElementById("uploadImage");
+  const filePreview = document.getElementById("filePreview");
+
+  fileInput.addEventListener("change", function () {
+    const file = fileInput.files[0];
+
+    const reader = new FileReader();
+
+    reader.addEventListener("load", function () {
+      const headproof = document.createElement('h2');
+      headproof.textContent = "Proof: "
+      filePreview.appendChild(headproof);
+      const preview = document.createElement("img");
+      preview.src = reader.result;
+      filePreview.appendChild(preview);
+    });
+
+    reader.readAsDataURL(file);
   });
 }

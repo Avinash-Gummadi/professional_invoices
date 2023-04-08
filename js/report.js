@@ -163,3 +163,11 @@ if (signatureImage) {
         window.location.href = 'illegal.html';
     });
 }
+
+// Create a new paragraph element with the text "Invoice generated on [current date]"
+const invoiceGenDate = document.getElementById('invoiceGenDate');
+if (invoiceGenDate) {
+  // Get the current date
+  const currentDate = new Date().toLocaleDateString();
+  invoiceGenDate.textContent = `Invoice generated on ${currentDate}`;
+}
