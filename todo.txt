@@ -1,0 +1,3 @@
+caching in firebase.json
+localstorage name, number, mail, company name, domain
+optimize the js files and then css
