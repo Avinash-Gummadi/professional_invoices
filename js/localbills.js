@@ -1,71 +1,87 @@
-if (document.title === "WebLaunch | Local Bills") {
-  // Set default terms and conditions
-  // Get the textarea element
+console.log(document.title);
+console.log(window.location.pathname);
+let pathName = window.location.pathname
+if ((pathName == "/localbills.html") || (pathName == "/rental.html")) {
   const termsAndConditions = document.getElementById('terms-and-conditions');
-  termsAndConditions.value = "1. The payment is for the specific purpose outlined in the bill and cannot be used for any other purpose.\n2. The employee is responsible for any taxes or other fees associated with the payment.\n3. Any disputes or discrepancies in the bill must be reported within 7 days of receipt.\n4. The employee agrees to provide any necessary documentation to support the payment if employer asks at any time, such as receipts or invoices.\n5. The employer reserves the right to withhold payment if the employee is found to be in violation of company policies or procedures.\n6. Payment will be made in the form specified in the bill, and any costs associated with processing the payment, such as wire transfer fees, will be borne by the employee.";
-
-  // Set the minimum height of the textarea
-  termsAndConditions.style.minHeight = '210px';
-
-  // Add an event listener for input changes
-  termsAndConditions.addEventListener('input', () => {
-    // Set the height of the textarea based on its content
-    termsAndConditions.style.height = 'auto';
-    termsAndConditions.style.height = `${termsAndConditions.scrollHeight}px`;
-  });
+  if (termsAndConditions) {
+    termsAndConditions.addEventListener('input', () => {
+      termsAndConditions.style.height = 'auto';
+      termsAndConditions.style.height = `${termsAndConditions.scrollHeight}px`;
+    });
+  }
   const billForm = document.getElementById("bill-form");
   const employeeNameField = document.getElementById("employee-name");
-  let employeeName = '';
-  employeeNameField.addEventListener('change', function (){
-    if (employeeNameField.value == 'Other') {
-      otherEmp = document.getElementById('otherEmp');
-      otherEmp.style.display = 'block';
-      document.getElementById('otherEmpField').addEventListener('change', function(){
-        employeeName = document.getElementById('otherEmpField').value;
-      })
-    } else {
-      document.getElementById('otherEmp').style.display = 'none';
-      employeeName = employeeNameField.value;
-    }
-    
-  })
-  billForm.addEventListener("submit", async function (event) {
+  console.log(employeeNameField.tagName);
+  let employeeName = null;
+  if (employeeNameField.tagName == 'SELECT') {
+    employeeNameField.addEventListener('change', function () {
+      if (employeeNameField.value == 'Other') {
+        otherEmp = document.getElementById('otherEmp');
+        otherEmp.style.display = 'block';
+        document.getElementById('otherEmpField').addEventListener('change', function () {
+          employeeName = document.getElementById('otherEmpField').value;
+        })
+      } else {
+        document.getElementById('otherEmp').style.display = 'none';
+        employeeName = employeeNameField.value;
+      }
+    })
+  }
+  billForm.addEventListener("submit", function (event) {
     event.preventDefault();
     const amount = document.getElementById("amount").value;
     const reason = document.getElementById("reason").value;
     const category = document.getElementById("category").value;
     const date = document.getElementById("date").value;
-    const tAndC = termsAndConditions.value;
-    // Construct the query string with the form data and compressed file data
+    const tAndC = termsAndConditions ? termsAndConditions.value : null
+    const amtWords = document.getElementById('amtinwords') ? document.getElementById('amtinwords').value : null
+    const addressVal = document.getElementById('address') ? document.getElementById('address').value : null
+    const rentPeriodVal = document.getElementById('rentPeriod') ? document.getElementById('rentPeriod').value : null
+
     const params = new URLSearchParams({
-      employeeName: employeeName,
+      employeeName: employeeName ? employeeName : employeeNameField.value,
       amount: amount,
       reason: reason,
       category: category,
       date: date,
-      termsconditions: tAndC,
     });
 
+    if (tAndC !== null) {
+      params.append('termsconditions', tAndC);
+    }
+    if (amtWords !== null) {
+      params.append('amtWords', amtWords);
+    }
+    if (addressVal !== null) {
+      params.append('addressVal', addressVal);
+    }
+    if (rentPeriodVal !== null) {
+      params.append('rentPeriodVal', rentPeriodVal);
+    }
+
     // Redirect to the report page with the query string
-    window.location.href = `localbillsreport.html?${params.toString()}`;
+    window.location.href = window.location.pathname == '/localbills.html' ? `localbillsreport.html?${params.toString()}` : `rentalreceipt.html?${params.toString()}`;
   });
 }
 
 // Check if the page is localbillsreport.html
-if (document.title === "WebLaunch | Local Bills Report") {
+if ((pathName == "/localbillsreport.html") || (pathName == "/rentalreceipt.html")) {
   // Get the query string from the URL
   const queryString = window.location.search;
 
   // Parse the query string to get the form data and compressed file data
   const urlParams = new URLSearchParams(queryString);
+  console.log(urlParams);
   const employeeName = urlParams.get('employeeName');
   const reason = urlParams.get('reason');
   const amount = urlParams.get('amount');
   const rawDate = urlParams.get('date');
   const options = { day: '2-digit', month: 'short', year: 'numeric' };
   const formattedRawDate = new Date(rawDate).toLocaleDateString('en-GB', options);
-  const termsAndConditions = urlParams.get('termsconditions').split('\n');
-
+  const termsAndConditions = urlParams.get('termsconditions') ? urlParams.get('termsconditions').split('\n') : null;
+  const amtWords = urlParams.get('amtWords');
+  const addressVal = urlParams.get('addressVal');
+  const rentPeriodVal = urlParams.get('rentPeriodVal');
 
   // Format invoice date as DD-MMM-YYYY (e.g. 02-Apr-2023)
   const payDate = formattedRawDate.split(' ').map((item, index) => {
@@ -82,6 +98,9 @@ if (document.title === "WebLaunch | Local Bills Report") {
   const dateElement = document.getElementById('date');
   const categoryElement = document.getElementById('category');
   const termsAndConditionsElement = document.getElementById('termsAndConditions');
+  const amtWordsElement = document.getElementById('amountInWords');
+  const addressElement = document.getElementById('tenantAddress');
+  const rentPeriodElement = document.getElementById('rentPeriod');
 
   if (employeeNameElement) {
     employeeNameElement.textContent = employeeName;
@@ -103,6 +122,18 @@ if (document.title === "WebLaunch | Local Bills Report") {
     categoryElement.textContent = category;
   }
 
+  if (amtWordsElement) {
+    amtWordsElement.textContent = amtWords;
+  }
+
+  if (addressElement) {
+    addressElement.textContent = addressVal;
+  }
+
+  if (rentPeriodElement) {
+    rentPeriodElement.textContent = rentPeriodVal;
+  }
+
   if (termsAndConditionsElement) {
     // Display the terms-and-conditions as a list
     for (const term of termsAndConditions) {
@@ -119,7 +150,7 @@ if (document.title === "WebLaunch | Local Bills Report") {
     const timestamp = new Date().getTime(); // gets current timestamp
     const file_name = `payment_slip_${timestamp}.pdf`; // dynamic file name with timestamp
     const output_path = `/path/to/save/pdf/payment_slip.pdf` // specify the output path here
-    
+
     const options = {
       margin: [10, 10, 10, 10],
       filename: file_name,
@@ -130,64 +161,36 @@ if (document.title === "WebLaunch | Local Bills Report") {
     };
 
     downloadPDFElement.addEventListener('click', function (event) {
-      // Hide the download buttons
       const downloadButtons = document.querySelectorAll('.download');
       downloadButtons.forEach(button => button.style.display = 'none');
       event.preventDefault();
       const containerElement = document.querySelector('.container');
+
+      const allTextElements = containerElement.querySelectorAll('*');
+      allTextElements.forEach(element => {
+        const currentFontSize = window.getComputedStyle(element).fontSize;
+        if (currentFontSize) {
+          const newFontSize = '12px';
+          element.style.fontSize = newFontSize;
+        }
+      });
+
       html2pdf()
         .from(containerElement)
         .set(options)
         .save().then(() => {
-          // Show the download buttons again after generating the PDF
           downloadButtons.forEach(button => button.style.display = 'block');
         });
     });
   }
-  const stampImage = document.getElementById('stampImage');
-  const signatureImage = document.getElementById('signatureImage');
-  if (stampImage) {
-    stampImage.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      alert('Tampering on stamp is Illegal.');
-      window.location.href = 'illegal.html';
-    });
-  }
 
-  if (signatureImage) {
-    signatureImage.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      alert('Tampering on signature is Illegal.');
-      window.location.href = 'illegal.html';
-    });
-  }
-
-  // Create a new paragraph element with the text "Invoice generated on [current date]"
   const invoiceGenDate = document.getElementById('invoiceGenDate');
   if (invoiceGenDate) {
-    // Get the current date
-    const currentDate = new Date().toLocaleDateString();
-    invoiceGenDate.textContent = `Invoice generated on ${currentDate}`;
+    const currentDate = new Date();
+    const day = currentDate.getDate().toString().padStart(2, '0');
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const year = currentDate.getFullYear();
+    const formattedDate = `${day}/${month}/${year}`;
+    invoiceGenDate.textContent = `Invoice generated on ${formattedDate}`;
   }
-
-  // 
-  const fileInput = document.getElementById("uploadImage");
-  const filePreview = document.getElementById("filePreview");
-
-  fileInput.addEventListener("change", function () {
-    const file = fileInput.files[0];
-
-    const reader = new FileReader();
-
-    reader.addEventListener("load", function () {
-      const headproof = document.createElement('h2');
-      headproof.textContent = "Proof: "
-      filePreview.appendChild(headproof);
-      const preview = document.createElement("img");
-      preview.src = reader.result;
-      filePreview.appendChild(preview);
-    });
-
-    reader.readAsDataURL(file);
-  });
 }

@@ -5,30 +5,29 @@ const urlParams = new URLSearchParams(window.location.search);
 const customerName = urlParams.get('customer-name');
 const customerAddress = urlParams.get('customer-address');
 const customerEmail = urlParams.get('customer-email');
+if (!customerEmail) {
+    document.getElementById('emailholder').remove()
+}
 const customerMobile = urlParams.get('customer-mobile');
-const termsAndConditions = urlParams.get('terms-and-conditions').split('\n');
+let termsAndConditions = urlParams.get('terms-and-conditions')
+termsAndConditions = termsAndConditions && termsAndConditions.split('\n');
 
 // Get invoice information
 const rawInvoiceDate = urlParams.get('invoice-date');
 const rawDueDate = urlParams.get('due-date');
-
 const options = { day: '2-digit', month: 'short', year: 'numeric' };
-const formattedInvoiceDate = new Date(rawInvoiceDate).toLocaleDateString('en-GB', options);
-const formattedDueDate = new Date(rawDueDate).toLocaleDateString('en-GB', options);
+const invoiceDate = rawInvoiceDate ? dateFormatter(rawInvoiceDate) : null
+const dueDate = rawDueDate ? dateFormatter(rawDueDate) : null
 
-// Format invoice date as DD-MMM-YYYY (e.g. 02-Apr-2023)
-const invoiceDate = formattedInvoiceDate.split(' ').map((item, index) => {
-    if (index === 0) return item.padStart(2, '0');
-    if (index === 1) return item.substr(0, 3);
-    return item;
-}).join('-');
-
-// Format due date as DD-MMM-YYYY (e.g. 02-Apr-2023)
-const dueDate = formattedDueDate.split(' ').map((item, index) => {
-    if (index === 0) return item.padStart(2, '0');
-    if (index === 1) return item.substr(0, 3);
-    return item;
-}).join('-');
+function dateFormatter(dateVal) {
+    const dateTemp = new Date(dateVal).toLocaleDateString('en-GB', options);
+    const temp = dateTemp.split(' ').map((item, index) => {
+        if (index === 0) return item.padStart(2, '0');
+        if (index === 1) return item.substr(0, 3);
+        return item;
+    }).join('-');
+    return temp
+}
 
 
 // Initialize array to store item information
@@ -63,18 +62,29 @@ customerNameElement.textContent = customerName;
 const customerMobileElement = document.getElementById('customerMobile');
 customerMobileElement.textContent = customerMobile;
 
-const customerEmailElement = document.getElementById('customerEmail');
-customerEmailElement.textContent = customerEmail;
+if (customerEmail) {
+    const customerEmailElement = document.getElementById('customerEmail');
+    customerEmailElement.textContent = customerEmail;
+}
 
 const customerAddressElement = document.getElementById('customerAddress');
 customerAddressElement.textContent = customerAddress;
 
-const invoiceDateElement = document.getElementById('invoiceDate');
-invoiceDateElement.textContent = invoiceDate;
-
-const dueDateElement = document.getElementById('dueDate');
-dueDateElement.textContent = dueDate;
-
+if (invoiceDate) {
+    const invoiceDateElement = document.getElementById('invoiceDate');
+    invoiceDateElement.textContent = invoiceDate;
+} else {
+    document.getElementById('dateInv').remove()
+}
+if (dueDate) {
+    const dueDateElement = document.getElementById('dueDate');
+    dueDateElement.textContent = dueDate;
+} else {
+    document.getElementById('dateDue').remove()
+}
+if (!invoiceDate && !dueDate) {
+    document.getElementById('invHeading').remove()
+}
 const itemsTableBody = document.getElementById('itemsTableBody');
 
 // Loop through the items array and add a table row for each item
@@ -106,12 +116,13 @@ const totalElement = document.getElementById('total');
 totalElement.textContent = `${total.toFixed(2)}`;
 
 //termsAndConditions
-const termsAndConditionsElement = document.getElementById('termsAndConditions');
-// Display the terms-and-conditions as a list
-for (const term of termsAndConditions) {
-    const listTermsItem = document.createElement('li');
-    listTermsItem.textContent = term;
-    termsAndConditionsElement.appendChild(listTermsItem);
+if (termsAndConditions) {
+    const termsAndConditionsElement = document.getElementById('termsAndConditions');
+    for (const term of termsAndConditions) {
+        const listTermsItem = document.createElement('li');
+        listTermsItem.textContent = term;
+        termsAndConditionsElement.appendChild(listTermsItem);
+    }
 }
 
 // PDF Download
@@ -123,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('downloadPDF').addEventListener('click', () => {
         // Options for html2pdf
         const timestamp = new Date().getTime(); // gets current timestamp
-        const file_name = `invoice_report_${timestamp}.pdf`; // dynamic file name with timestamp
+        const file_name = window.location.pathname == '/invoice.html' ? `invoice_report_${timestamp}.pdf` : `medical_bill_${timestamp}.pdf`;
         const options = {
             margin: [10, 10, 18, 10],
             filename: file_name,
@@ -146,28 +157,30 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-const stampImage = document.getElementById('stampImage');
-const signatureImage = document.getElementById('signatureImage');
-if (stampImage) {
-    stampImage.addEventListener('contextmenu', (event) => {
-        event.preventDefault();
-        alert('Tampering on stamp is Illegal.');
-        window.location.href = 'illegal.html';
-    });
-}
+// const stampImage = document.getElementById('stampImage');
+// const signatureImage = document.getElementById('signatureImage');
+// if (stampImage) {
+//     stampImage.addEventListener('contextmenu', (event) => {
+//         event.preventDefault();
+//         alert('Tampering on stamp is Illegal.');
+//         window.location.href = 'illegal.html';
+//     });
+// }
 
-if (signatureImage) {
-    signatureImage.addEventListener('contextmenu', (event) => {
-        event.preventDefault();
-        alert('Tampering on signature is Illegal.');
-        window.location.href = 'illegal.html';
-    });
-}
+// if (signatureImage) {
+//     signatureImage.addEventListener('contextmenu', (event) => {
+//         event.preventDefault();
+//         alert('Tampering on signature is Illegal.');
+//         window.location.href = 'illegal.html';
+//     });
+// }
 
-// Create a new paragraph element with the text "Invoice generated on [current date]"
 const invoiceGenDate = document.getElementById('invoiceGenDate');
 if (invoiceGenDate) {
-  // Get the current date
-  const currentDate = new Date().toLocaleDateString();
-  invoiceGenDate.textContent = `Invoice generated on ${currentDate}`;
+  const currentDate = new Date();
+  const day = currentDate.getDate().toString().padStart(2, '0');
+  const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+  const year = currentDate.getFullYear();
+  const formattedDate = `${day}/${month}/${year}`;
+  invoiceGenDate.textContent = `Invoice generated on ${formattedDate}`;
 }

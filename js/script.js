@@ -1,18 +1,10 @@
-// Set default terms and conditions
-// Get the textarea element
 const termsAndConditions = document.getElementById('terms-and-conditions');
-termsAndConditions.value = "1. Advance is not refundable after 7 days.\n2. Price negotiation after the project completion is not allowed.\n3. Hosting will be done after full payment only.\n4. Changes can be made before hosting only\n5. If the client has extra requirements, it needs to be informed before or extra charges will be charged.\n6. The above price is exclusive of GST and its optional";
-
-// Set the minimum height of the textarea
-termsAndConditions.style.minHeight = '150px';
-
-// Add an event listener for input changes
-termsAndConditions.addEventListener('input', () => {
-  // Set the height of the textarea based on its content
-  termsAndConditions.style.height = 'auto';
-  termsAndConditions.style.height = `${termsAndConditions.scrollHeight}px`;
-});
-
+if (termsAndConditions) {
+  termsAndConditions.addEventListener('input', () => {
+    termsAndConditions.style.height = 'auto';
+    termsAndConditions.style.height = `${termsAndConditions.scrollHeight}px`;
+  });
+}
 // Select elements
 const form = document.querySelector('form');
 const inputs = form.querySelectorAll('input, textarea');
@@ -88,7 +80,7 @@ inputs.forEach((input) => {
 });
 
 // Get form data on submit
-document.getElementById('invoice-form').addEventListener('submit', function(event) {
+document.getElementById('invoice-form').addEventListener('submit', function (event) {
   event.preventDefault(); // Prevent form submission
   const formData = new FormData(event.target); // Get form data
 
@@ -97,30 +89,33 @@ document.getElementById('invoice-form').addEventListener('submit', function(even
   const itemQuantityInputs = document.querySelectorAll('.item-quantity');
   const itemPriceInputs = document.querySelectorAll('.item-price');
   const itemTotalInputs = document.querySelectorAll('.item-total');
-  
+
   itemNameInputs.forEach((input, index) => {
     formData.append(`item-${index + 1}-name`, input.value);
   });
-  
+
   itemQuantityInputs.forEach((input, index) => {
     formData.append(`item-${index + 1}-quantity`, input.value);
   });
-  
+
   itemPriceInputs.forEach((input, index) => {
     formData.append(`item-${index + 1}-price`, input.value);
   });
-  
+
   itemTotalInputs.forEach((input, index) => {
     formData.append(`item-${index + 1}-total`, input.value);
   });
-  
+
   const urlParams = new URLSearchParams(); // Create URL parameters object
-  
+
   // Add form data and other input field data to URL parameters
   formData.forEach((value, key) => {
     urlParams.append(key, value);
   });
-  
+
   // Redirect to invoicereport.html with URL parameters
   window.location.href = `invoicereport.html?${urlParams.toString()}`;
+
+  window.location.href = window.location.pathname == '/invoice.html' ? `invoicereport.html?${urlParams.toString()}` : `medicalreport.html?${urlParams.toString()}`;
+
 });

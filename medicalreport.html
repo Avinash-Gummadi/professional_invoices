@@ -18,9 +18,9 @@
     </a>
     <nav>
       <ul class="options-list">
-        <li class="option active"><a href="invoice.html">Invoice Generator</a></li>
+        <li class="option"><a href="invoice.html">Invoice Generator</a></li>
         <li class="option"><a href="localbills.html">Local Bills</a></li>
-        <li class="option"><a href="medicalbill.html">Medical Bills</a></li>
+        <li class="option active"><a href="medicalbill.html">Medical Bills</a></li>
         <li class="option"><a href="rental.html">Rent Receipt</a></li>
       </ul>
     </nav>
@@ -31,10 +31,6 @@
       <div class="download-container">
         <div class="download">
           <a href="#" id="downloadPDF">Download as PDF</a>
-        </div>
-        <div class="download">
-          <label for="uploadSign">Upload Signature</label>
-          <input type="file" id="uploadSign" style="display: none;">
         </div>
       </div>
       <div class="company-info">
@@ -47,14 +43,14 @@
         <a href="https://weblaunch.in" target="_blank">weblaunch.in</a>
       </div>
       <div class="customer-details">
-        <h1 class="text-center">INVOICE</h1>
-        <h2>Client Information</h2>
-        <p>Client Name: <span id="customerName"></span></p>
+        <h1 class="text-center">MEDICAL BILL</h1>
+        <h2>Patient Information</h2>
+        <p>Patient Name: <span id="customerName"></span></p>
 
-        <p>Client Mobile: <span id="customerMobile"></span></p>
-        <p id="emailholder">Client Email: <span id="customerEmail"></span></p>
+        <p>Patient Mobile: <span id="customerMobile"></span></p>
+        <p id="emailholder">Patient Email: <span id="customerEmail"></span></p>
 
-        <p>Client Address: <span id="customerAddress"></span></p>
+        <p>Patient Address: <span id="customerAddress"></span></p>
         <h2 id="invHeading">Invoice Information</h2>
         <p id="dateInv">Invoice Date: <span id="invoiceDate"></span></p>
         <p id="dateDue">Due Date: <span id="dueDate"></span></p>
@@ -62,8 +58,8 @@
         <table>
           <thead>
             <tr>
-              <th>Product(s)</th>
-              <th>Unit(s)</th>
+              <th>Service(s)</th>
+              <th>Quantity/Unit(s)</th>
               <th>Price (₹)</th>
               <th>Total (₹)</th>
             </tr>
@@ -75,10 +71,6 @@
           <h2>Total Amount</h2>
           <p>₹<span id="total"></span></p>
         </div>
-        <section class="terms-and-conditions" id="termscondsec">
-          <h2>Terms and Conditions</h2>
-          <ul id="termsAndConditions" style="list-style: none;"></ul>
-        </section>
         <div id="stampSignature">
           <div class="stamp-container">
             <img id="stampImage" src="images/weblaunch_stamp.png">
@@ -93,7 +85,6 @@
   </main>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
   <script defer type="text/javascript" src="js/report.js"></script>
-  <script defer type="text/javascript" src="js/upload.js"></script>
 </body>
 
 </html>

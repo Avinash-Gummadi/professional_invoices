@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Medical Bill Generator | CrazyTechBytes</title>
+  <meta name="description" content="Generate medical bills for your patients with CrazyTechBytes's medical bill generator.">
+  <meta name="keywords" content="Medical Bill Generator, CrazyTechBytes, Billing">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.png">
+  <!-- <script src="js/auth.js"></script> -->
+</head>
+
+<body>
+  <header>
+    <a href="index.html">
+      <img src="images/logo.png" class="logo-image" alt="CrazyTechBytes logo">
+    </a>
+    <nav>
+      <ul class="options-list">
+        <li class="option"><a href="invoice.html">Invoice Generator</a></li>
+        <li class="option"><a href="localbills.html">Local Bills</a></li>
+        <li class="option active"><a href="medicalbill.html">Medical Bills</a></li>
+        <li class="option"><a href="rental.html">Rent Receipt</a></li>
+      </ul>
+    </nav>
+    <h1>Medical Bill</h1>
+  </header>
+  <main>
+    <form id="invoice-form" class="container" method="GET">
+      <fieldset>
+        <legend>Patient Information</legend>
+        <label for="customer-name">Patient Name</label>
+        <input type="text" id="customer-name" name="customer-name" required>
+        <label for="customer-address">Patient Address</label>
+        <input type="text" id="customer-address" name="customer-address" required />
+        <label for="customer-mobile">Patient Mobile Number</label>
+        <input type="tel" id="customer-mobile" name="customer-mobile" required>
+      </fieldset>
+      <fieldset>
+        <legend>Medical Services</legend>
+        <table id="itemsTable">
+          <thead>
+            <tr>
+              <th>Delete</th>
+              <th>Service(s)</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Sub Total</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4" style="text-align:right">Total:</td>
+              <td><input type="number" id="total" name="total" step="0.01" readonly></td>
+            </tr>
+          </tfoot>
+        </table>
+        <button class="add-item-btn" type="button" onclick="addItem()">Add Service</button>
+      </fieldset>
+      <button type="submit">Generate Medical Bill</button>
+    </form>
+  </main>
+  <script src="js/script.js"></script>
+</body>
+
+</html>

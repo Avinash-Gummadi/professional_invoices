@@ -25,6 +25,10 @@ h1 {
     margin: 0;
 }
 
+.text-center {
+    text-align: center;
+}
+
 nav ul {
     list-style: none;
     margin: 0;
@@ -180,9 +184,11 @@ button[type="submit"]:hover {
     color: #333;
     font-style: italic;
 }
-.customer-details{
+
+.customer-details {
     margin-top: 105px;
 }
+
 .download {
     text-align: center;
     margin-left: 10px;
@@ -246,7 +252,6 @@ button[type="submit"]:hover {
 .input-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin: 0 10px;
     width: 100%;
 }
@@ -306,10 +311,40 @@ button[type="submit"]:hover {
     page-break-inside: avoid;
 }
 
-#filePreview{
+#filePreview {
     page-break-inside: avoid;
 }
-#filePreview img{
+
+#filePreview img {
     width: 300px;
     height: 500px;
+}
+
+.underline {
+    border-bottom: 1px solid black;
+    display: inline-block;
+    text-align: center;
+}
+
+.shortWidth {
+    width: 10%;
+}
+
+.longWidth {
+    width: 40%;
+}
+
+.moreWidth {
+    width: 50%;
+}
+
+.referlink{
+    color: #333;
+    text-decoration: none;
+    float: right;
+}
+
+li.option.active a {
+    font-weight: bold;
+    color: #f00;
 }

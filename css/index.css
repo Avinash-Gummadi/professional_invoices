@@ -30,6 +30,9 @@
     }
   }
   
+  .text-center {
+    text-align: center;
+  }
   .options-list {
     list-style: none;
     padding: 0;
@@ -37,7 +40,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    flex-wrap: wrap;
   }
   
   .option {

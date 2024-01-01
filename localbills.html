@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>WebLaunch | Local Bills</title>
+  <title>CrazyTechBytes | Local Bills</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="images/logo.png">
-  <script src="js/auth.js"></script>
+  <!-- <script src="js/auth.js"></script> -->
 </head>
 
 <body>
@@ -19,18 +19,15 @@
     <nav>
       <ul class="options-list">
         <li class="option"><a href="invoice.html">Invoice Generator</a></li>
-        <li class="option"><a href="localbills.html">Local Bills</a></li>
-        <li class="option"><a href="#">Other1</a></li>
-        <li class="option"><a href="#">Other2</a></li>
-        <li class="option"><a href="#">Other3</a></li>
-        <li class="option"><a href="#">Other4</a></li>
-        <li class="option"><a href="#">Other5</a></li>
+        <li class="option active"><a href="localbills.html">Local Bills</a></li>
+        <li class="option"><a href="medicalbill.html">Medical Bills</a></li>
+        <li class="option"><a href="rental.html">Rent Receipt</a></li>
       </ul>
     </nav>
     <h1>Local Bills</h1>
   </header>
   <main>
-    <form id="bill-form" class="container">
+    <form id="bill-form" class="container" method="GET">
       <fieldset id="addField">
         <legend>Employee Information</legend>
         <label for="employee-name">Employee Name</label>
@@ -80,7 +77,13 @@
       <fieldset>
         <legend>Terms and Conditions</legend>
         <label for="terms-and-conditions">Terms and Conditions</label>
-        <textarea id="terms-and-conditions" name="terms-and-conditions" required></textarea>
+        <textarea id="terms-and-conditions" name="terms-and-conditions" style="min-height: 210px;"
+placeholder="1. The payment is for the specific purpose outlined in the bill and cannot be used for any other purpose.
+2. The employee is responsible for any taxes or other fees associated with the payment.
+3. Any disputes or discrepancies in the bill must be reported within 7 days of receipt.
+4. The employee agrees to provide any necessary documentation to support the payment if the employer asks at any time, such as receipts or invoices.
+5. The employer reserves the right to withhold payment if the employee is found to be in violation of company policies or procedures.
+6. Payment will be made in the form specified in the bill, and any costs associated with processing the payment, such as wire transfer fees, will be borne by the employee." required></textarea>
       </fieldset>
       <button type="submit">Submit</button>
     </form>

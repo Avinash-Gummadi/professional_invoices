@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>CrazyTechBytes | Local Bills Report</title>
+  <title>CrazyTechBytes | Rent Receipt Bill</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="images/logo.png">
   <!-- <script src="js/auth.js"></script> -->
@@ -19,12 +19,12 @@
     <nav>
       <ul class="options-list">
         <li class="option"><a href="invoice.html">Invoice Generator</a></li>
-        <li class="option active"><a href="localbills.html">Local Bills</a></li>
+        <li class="option"><a href="localbills.html">Local Bills</a></li>
         <li class="option"><a href="medicalbill.html">Medical Bills</a></li>
-        <li class="option"><a href="rental.html">Rent Receipt</a></li>
+        <li class="option active"><a href="rental.html">Rent Receipt</a></li>
       </ul>
     </nav>
-    <h1>Local Bills Report</h1>
+    <h1>Rent Receipt</h1>
   </header>
   <main>
     <div class="container">
@@ -42,31 +42,21 @@
           <input type="file" id="uploadSign" style="display: none;">
         </div>
       </div>
-      <div class="company-info">
-        <div>
-          <img src="images/logo.png" class="logo-image" alt="Logo">
-          <h2 class="company-name">CrazyTechBytes</h2>
-        </div>
-        <a href="tel:+91 7671876916">+91 7671876916</a>
-        <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to=weblaunch2021@gmail.com&subject=Payment%20Issue&body=Hi%20there,%0D%0A%0D%0AI%20hope%20this%20email%20finds%20you%20well.%20I'm%20writing%20to%20bring%20to%20your%20attention%20an%20issue%20regarding%20a%20recent%20payment.%20I%20have%20noticed%20an%20error%20in%20the%20amount%20paid.%0D%0A%0D%0ACould%20you%20please%20look%20into%20this%20and%20let%20me%20know%20what%20the%20situation%20is%20and%20when%20it%20will%20be%20resolved?%0D%0A%0D%0AThank%20you."
-          target="_blank" class="d-block text-white email-a">weblaunch2021@gmail.com</a>
-        <a href="https://weblaunch.in" target="_blank">weblaunch.in</a>
-      </div>
 
-      <div class="customer-details">
-        <h2>Employee Information</h2>
-        <p>Employee Name: <span id="employeeName"></span></p>
-        <p>Date: <span id="date"></span></p>
-        <p>Category: <span id="category"></span></p>
-        <h2>Payment Explanation</h2>
-        <p><span id="reason"></span></p>
-        <h2>Amount Paid</h2>
-        <p>₹<span id="amount"></span></p>
+      <div class="customer-details" style="margin-top: 50px;">
+        <h1 class="text-center">RENT RECEIPT</h1>
+        <p>RENT RECEIVED A SUM OF RS. <span class="underline shortWidth" id="amount"></span> PER MONTH (IN WORDS) <span
+            class="underline longWidth" id="amountInWords"></span></p>
+        <p>TOWARDS THE RENT FOR THE MONTH / PERIOD OF <span class="underline longWidth" id="rentPeriod"></span><p>
 
-        <section class="terms-and-conditions">
-          <h2>Terms and Conditions</h2>
-          <ul id="termsAndConditions" style="list-style: none;"></ul>
-        </section>
+        </p>FROM MR/MS. <span class="underline moreWidth" id="employeeName"></span></p>
+        <p> WHO IS RESIDING AT
+          <span class="underline moreWidth" id="tenantAddress"></span>
+        </p>
+        <br>
+        <p>THE LANDLORD OF THE PROPERTY: <span id="reason" class="underline"></span></p>
+        <p>THE PROPERTY FALLS UNDER THE CATEGORY: <span id="category" class="underline"></span></p>
+        <p>DATE OF RECEIPT: <span id="date" class="underline"></span></p>
 
         <div id="stampSignature">
           <div class="stamp-container">
