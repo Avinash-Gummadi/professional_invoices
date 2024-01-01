@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Management Tools | CrazyTechBytes</title>
+  <meta name="description"
+    content="Generate professional invoices for your business with CrazyTechBytes's invoice generator.">
+  <meta name="keywords" content="Invoice Generator, CrazyTechBytes, Invoicing">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="icon" href="images/logo.png">
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBHxXpHracKD96DM-qD-l82XyRwrcqqR5E",
+      authDomain: "billscrazytechbytes.firebaseapp.com",
+      projectId: "billscrazytechbytes",
+      storageBucket: "billscrazytechbytes.appspot.com",
+      messagingSenderId: "693163243212",
+      appId: "1:693163243212:web:647a0a9f0e9b7445eab469",
+      measurementId: "G-1W3Z3R02P4"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+</head>
+
+<body>
+  <header>
+    <a href="index.html">
+      <img src="images/logo.png" class="logo-image" alt="CrazyTechBytes logo">
+    </a>
+    <h1 class="page-title">CrazyTechBytes</h1>
+  </header>
+  <main>
+    <h1 class="section-title text-center">Welcome to My Website</h1>
+    <p class="description text-center">Choose one of the following options:</p>
+    <ul class="options-list">
+      <li class="option"><a href="invoice.html">Invoice Generator</a></li>
+      <li class="option"><a href="localbills.html">Local Bills</a></li>
+      <li class="option"><a href="medicalbill.html">Medical Bills</a></li>
+      <li class="option"><a href="rental.html">Rent Bills</a></li>
+    </ul>
+  </main>
+</body>
+
+</html>
